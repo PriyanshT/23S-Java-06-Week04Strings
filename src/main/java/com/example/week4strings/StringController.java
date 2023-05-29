@@ -18,6 +18,10 @@ public class StringController implements Initializable {
     @FXML
     private Label noSpaceLabel;
 
+    @FXML
+    private Label formattedLabel;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("I am inside the controller");
@@ -58,6 +62,14 @@ public class StringController implements Initializable {
             // to add data to new label
             String phoneNumNoSpaces = phoneNum.replaceAll("[-.\\s\\(\\)]", "");
             noSpaceLabel.setText(phoneNumNoSpaces);
+
+            // create formated string
+            if(phoneNumNoSpaces.length() == 10){
+                String areaCode = phoneNumNoSpaces.substring(0, 3);
+                String secondPart = phoneNumNoSpaces.substring(3, 6);
+                String lastPart = phoneNumNoSpaces.substring(6);
+                formattedLabel.setText(String.format("(%s) %s-%s", areaCode, secondPart, lastPart));
+            }
         });
     }
 }
