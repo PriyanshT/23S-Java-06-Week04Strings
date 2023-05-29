@@ -41,5 +41,16 @@ public class StringController implements Initializable {
         System.out.println(sb1);
         sb1.append("Xyz");
         System.out.println(sb1);
+
+        // regex
+        phoneNumberTextField.textProperty().addListener((observableValue, oldValue, phoneNum) -> {
+            // check if the value matches the regex
+            // if it does, it will say its a valid number
+            if(phoneNum.matches("[2-9][0-9][0-9][2-9]\\d{2}[0-9]{4}")){
+                resultLabel.setText(phoneNum + " is a valid phone number.");
+            } else {
+                resultLabel.setText(phoneNum + " is not valid phone number.");
+            }
+        });
     }
 }
